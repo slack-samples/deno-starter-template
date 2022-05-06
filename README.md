@@ -7,7 +7,7 @@ This repo is a bare template for new Run On Slack apps.
 To use this template, you will need to have installed and configured the Slack CLI. 
 Do this by following our [Next-generation Quickstart Guide](https://api.slack.com/future/quickstart).
 
-## Making an app
+# Making an app
 
 Make a Run On Slack app this with repo by **creating an app from this template**, 
 **configuring your app**, then **writing functions**. 
@@ -15,7 +15,7 @@ Make a Run On Slack app this with repo by **creating an app from this template**
 Once you're done, you can Run your app with the CLI's local development server
 or Deploy your app to production.
 
-### 1. Creating an app from this template
+## 1. Creating an app from this template
 
 Clone this repo with the Slack CLI:
 
@@ -23,7 +23,7 @@ Clone this repo with the Slack CLI:
 $ slack create my-app -t slackapi/deno-bare-template
 ```
 
-### 2. Configuring your app
+## 2. Configuring your app
 
 The first thing we'll do is configure our app's manifest. This will let us 
 configure things like our app's name and the [scopes](https://api.slack.com/scopes)
@@ -50,7 +50,7 @@ export default Manifest({
 });
 ```
 
-### 3. Writing functions
+## 3. Writing functions
 
 On the next-generation platform, you can build **Run On Slack functions**, reusable 
 building blocks of automation that are deployed to Slack and accept 
@@ -64,7 +64,7 @@ To create a Run On Slack function:
 * **define** the function in the Manifest, then 
 * **implement** the function in its respective source file.
 
-#### 3.a. Define your function
+### 3.a. Define your function
 
 In your `manifest.ts` file, define a function with `DefineFunction` like this:
 
@@ -170,7 +170,7 @@ input_parameters: {
 
 </details>
 
-#### 3.b. Implement your function
+### 3.b. Implement your function
 
 With your function defined in the manifest file, you can now implement your 
 function in its respective source file. 
