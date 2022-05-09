@@ -1,15 +1,15 @@
-# A bare template for Run On Slack apps
+# A starter template for Run On Slack apps
 
-This repo is a bare template for new Run On Slack apps. 
+This repo is a starter template for new Run On Slack apps. 
 
 ## Prerequisites
 
 To use this template, you will need to have installed and configured the Slack CLI. 
-Do this by following our [Next-generation Quickstart Guide](https://api.slack.com/future/quickstart).
+Do this by following our [Quickstart Guide](https://api.slack.com/future/quickstart).
 
 # Making an app
 
-Make a Run On Slack app this with repo by **creating an app from this template**, 
+Make a Run On Slack app with this with repo by **creating an app from this template**, 
 **configuring your app**, then **writing functions**. 
 
 Once you're done, you can Run your app with the CLI's local development server
@@ -52,9 +52,10 @@ export default Manifest({
 
 ## 3. Writing functions
 
-On the next-generation platform, you can build **Run On Slack functions**, reusable 
-building blocks of automation that are deployed to Slack and accept 
-inputs, perform some calculations, and provide outputs. 
+On our [next-generation platform](https://api.slack.com/future), you can 
+build **Run On Slack functions**, reusable building blocks of automation 
+that are deployed to Slack and accept inputs, perform some calculations, 
+and provide outputs. 
 
 Functions can be triggered via Global Shortcut, and we'll be adding support 
 for more function and trigger types in the coming months.
