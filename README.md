@@ -20,7 +20,7 @@ or Deploy your app to production.
 Clone this repo with the Slack CLI:
 
 ```zsh
-$ slack create my-app -t slackapi/deno-bare-template
+$ slack create my-app -t slack-samples/deno-starter-template
 ```
 
 ## 2. Configuring your app
@@ -261,5 +261,3 @@ When you want to turn off the local development server, use `Ctrl+c` in the comm
 
 When you're done developing your app, you can deploy it directly to Slack 
 with `slack deploy`.
-
-
