@@ -238,7 +238,6 @@ When instantiating the function, use `SlackFunctionHandler` and pass
 in your function's `.definition` so that your required inputs and outputs will be 
 enforced.
 
-
 ## Using the CLI
 To learn more about development with the CLI, you can visit the following guides:
 - [In-depth guide on Creating a New App](https://api.slack.com/future/create)
