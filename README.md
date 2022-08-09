@@ -236,7 +236,22 @@ export default myFunction;
 A function's implementation must be the default export of the source file. 
 When instantiating the function, use `SlackFunctionHandler` and pass 
 in your function's `.definition` so that your required inputs and outputs will be 
-enforced. 
+enforced.
+
+
+## Using the CLI
+To learn more about development with the CLI, you can visit the following guides:
+- [In-depth guide on Creating a New App](https://api.slack.com/future/create)
+- [Configuring an app](https://api.slack.com/future/manifest)
+- [Developing locally](https://api.slack.com/future/run)
+To view all documentation and guides available for the CLI, visit the [Overview page](https://api.slack.com/future/overview).
+
+When using the CLI to develop your app, here are some helpful commands:
+- `slack version`: Checks current version of your CLI and the SDKs it uses.
+- `slack upgrade`: Checks for updates for current SDK and CLI versions and upgrades them as needed.
+- `slack auth list`: Lists all authorized workspaces.
+- `slack auth login`: Allows you to log in to a new or inactive workspace with the CLI.
+To view all other commands available in the CLI, run `slack help`.
 
 ## Running your app locally
 
