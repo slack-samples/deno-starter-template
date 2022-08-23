@@ -4,6 +4,15 @@ This repo is a starter template for new Run On Slack apps. This template uses De
 
 Before getting started, make sure you have a development workspace where you have permissions to install apps. If you don’t have one set up, go ahead and [create one](https://slack.com/create).
 
+## Template Versions
+
+#### Accessing Different CLI Versions of Templates
+This template is compatible with version(s) of the Slack CLI.
+
+To view a template that is compatible with a specific version of the CLI, view the list below:
+
+- **(current)**[deno-starter-template for CLI v1.0.0](https://github.com/slack-samples/deno-starter-template/tree/main)
+
 ## Installation
 
 #### Prerequisites
