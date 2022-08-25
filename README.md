@@ -4,15 +4,6 @@ This repo is a starter template for new Run On Slack apps. This template uses De
 
 Before getting started, make sure you have a development workspace where you have permissions to install apps. If you don’t have one set up, go ahead and [create one](https://slack.com/create).
 
-## Template Versions
-
-#### Accessing Different CLI Versions of Templates
-This template is compatible with version(s) of the Slack CLI.
-
-To view a template that is compatible with a specific version of the CLI, view the list below:
-
-- **(current)**[deno-starter-template for CLI v1.0.0](https://github.com/slack-samples/deno-starter-template/tree/main)
-
 ## Installation
 
 #### Prerequisites
@@ -20,13 +11,11 @@ To view a template that is compatible with a specific version of the CLI, view t
 To use this template, you will need to have installed and configured the Slack CLI. 
 Do this by following our [Quickstart Guide](https://api.slack.com/future/quickstart).
 
-You will also need a `slack.json` file - you can learn more about this file in the `Project Structure` section.
-
 #### Get Started
 
 Make a Run On Slack app with this with repo by **creating an app from this template**, **configuring your app**, then **writing functions**. 
 
-Once you're done, you can Run your app with the CLI's local development server or Deploy your app to production.
+Once you're done, you can run your app with the CLI's local development server or Deploy your app to production.
 
 ### Setup Your Project
 
@@ -44,26 +33,7 @@ slack run
 slack deploy
 ```
 
-#### Running your app locally
-
-While building your app, you can see your changes propagated to your workspace in real-time with `slack run`.
-
-Executing `slack run` starts a local development server, syncing changes to your workspace's development version of your app. (You'll know it's the development version because the name has the string `(dev)` appended).
-
-Your local development server is ready to go when you see the following:
-
-```zsh
-Connected, awaiting events
-
-```
-
-When you want to turn off the local development server, use `Ctrl+c` in the command prompt.
-
-#### Deploying your app to Slack
-
-When you're done developing your app, you can deploy it directly to Slack with `slack deploy`.
-
-#### Configuring your app
+#### Configuring Your App
 
 The first thing we'll do is configure our app's manifest. This will let us configure things like our app's name and the [scopes](https://api.slack.com/scopes) it requires.
 
@@ -82,18 +52,31 @@ export default Manifest({
 });
 ```
 
-#### Writing functions
+#### Running Your App Locally
 
-On our [next-generation platform](https://api.slack.com/future), you can build **Run On Slack functions**, reusable building blocks of automation that are deployed to Slack and accept inputs, perform some calculations, cand provide outputs. 
+While building your app, you can see your changes propagated to your workspace in real-time with `slack run`.
 
-Functions can be triggered via Global Shortcut, and we'll be adding support for more function and trigger types in the coming months.
+Executing `slack run` starts a local development server, syncing changes to your workspace's development version of your app. (You'll know it's the development version because the name has the string `(dev)` appended).
+
+Your local development server is ready to go when you see the following:
+
+```zsh
+Connected, awaiting events
+
+```
+
+When you want to turn off the local development server, use `Ctrl+c` in the command prompt.
+
+#### Writing Functions
+
+On our [next-generation platform](https://api.slack.com/future), you can build **Run On Slack functions**, reusable building blocks of automation that are deployed to Slack and accept inputs, perform some calculations, and provide outputs. 
 
 To create a Run On Slack function:
 
 * **define** the function in the Manifest, then 
 * **implement** the function in its respective source file.
 
-##### Define your function
+##### Define Your Function
 
 In your `manifest.ts` file, define a function with `DefineFunction` like this:
 
@@ -196,7 +179,7 @@ input_parameters: {
 
 </details>
 
-##### Implement your function
+##### Implement Your Function
 
 With your function defined in the manifest file, you can now implement your function in its respective source file. 
 
@@ -259,6 +242,10 @@ export default myFunction;
 A function's implementation must be the default export of the source file. When instantiating the function, use `SlackFunctionHandler` and pass in your function's `.definition` so that your required inputs and outputs will be 
 enforced.
 
+#### Deploying Your App to Slack
+
+When you're done developing your app, you can deploy it directly to Slack with `slack deploy`.
+
 ## Using the Slack CLI
 To learn more about development with the CLI, you can visit the following guides:
 - [Creating a new app with the CLI](https://api.slack.com/future/create)
@@ -282,40 +269,3 @@ To view all other commands available in the CLI, run `slack help`.
 ### `slack.json`
 
 `slack.json` is a required file for running Slack CLI apps. This file is a way for the CLI to interact with your project's SDK. It defines script hooks which are *executed by the CLI* and *implemented by the SDK.*
-
-An example of this file's format can be found below:
-```js
-{
-  "hooks": {
-    "get-hooks": "deno run -q --unstable --allow-read --allow-net https://deno.land/x/deno_slack_hooks@0.0.4/mod.ts",
-    // This is a user-defined custom hook that overrides the default "get-manifest"
-    "get-manifest": "deno run -q --unstable --config=deno.jsonc --allow-read --allow-net https://deno.land/x/deno_slack_builder@0.0.8/mod.ts --manifest",
-    // This is a user-defined custom hook that adds new functionality
-    "custom-hook": "deno run my-custom-hook.ts"
-  }
-}
-```
-
-## App Distribution / OAuth
-
-Only implement OAuth if you plan to distribute your application across multiple workspaces.
-
-When using OAuth, Slack requires a public URL where it can send requests. You can use [`ngrok`](https://ngrok.com/download). Check out [this guide](https://ngrok.com/docs#getting-started-expose) for setting it up.
-
-Start `ngrok` to access the app on an external network and create a redirect URL for OAuth. 
-
-```
-ngrok http 3000
-```
-
-This output should include a forwarding address for `http` and `https` (we'll use `https`). It should look something like the following:
-
-```
-Forwarding   https://3cb89939.ngrok.io -> http://localhost:3000
-```
-
-Navigate to **OAuth & Permissions** in your app configuration and click **Add a Redirect URL**. The redirect URL should be set to your `ngrok` forwarding address with the `slack/oauth_redirect` path appended. For example:
-
-```
-https://3cb89939.ngrok.io/slack/oauth_redirect
-```
