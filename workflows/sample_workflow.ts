@@ -1,5 +1,5 @@
 import { DefineWorkflow, Schema } from "deno-slack-sdk/mod.ts";
-import SampleFunction from "../functions/sample-function/sample_definition.ts";
+import { SampleFunctionDefinition } from "../functions/sample_function.ts";
 
 const SampleWorkflow = DefineWorkflow({
   callback_id: "sample_workflow",
@@ -36,7 +36,7 @@ const inputForm = SampleWorkflow.addStep(
   },
 );
 
-const sampleFunctionStep = SampleWorkflow.addStep(SampleFunction, {
+const sampleFunctionStep = SampleWorkflow.addStep(SampleFunctionDefinition, {
   message: inputForm.outputs.fields.message,
 });
 
