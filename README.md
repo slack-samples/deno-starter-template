@@ -36,12 +36,12 @@ Connected, awaiting events
 
 ## Deploying Your App
 
-When you're done with development, you can deploy your app to Slack with
+When you're done with development, you can deploy your app to Slack using
 `slack deploy`:
 
 ```zsh
 # Deploy to a production workspace
-slack deploy
+$ slack deploy
 ```
 
 ## Project Structure
