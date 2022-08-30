@@ -3,7 +3,7 @@ import { Trigger } from "deno-slack-api/types.ts";
 const sampleTrigger: Trigger = {
   type: "shortcut",
   name: "Sample trigger",
-  description: "A sample trigger for demonstration",
+  description: "A sample trigger",
   workflow: "#/workflows/sample_workflow",
   inputs: {
     interactivity: {

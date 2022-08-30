@@ -1,10 +1,9 @@
-import { DefineFunction, Schema } from "deno-slack-sdk/mod.ts";
-import type { SlackFunctionHandler } from "deno-slack-sdk/types.ts";
+import { DefineFunction, Schema, SlackFunction } from "deno-slack-sdk/mod.ts";
 
-const SampleFunctionDefinition = DefineFunction({
+export const SampleFunctionDefinition = DefineFunction({
   callback_id: "sample_function",
   title: "Sample function",
-  description: "A sample function for demonstration",
+  description: "A sample function",
   source_file: "functions/sample_function.ts",
   input_parameters: {
     properties: {
@@ -23,18 +22,15 @@ const SampleFunctionDefinition = DefineFunction({
       },
     },
     required: ["updatedMsg"],
-  },
+  }
 });
 
-const SampleFunction: SlackFunctionHandler<
-  typeof SampleFunctionDefinition.definition
-> = (
-  { inputs },
-) => {
-  const { message } = inputs;
-  const updatedMsg =
-    `:wave: You submitted the following message: \n\n>${message}`;
-  return { outputs: { updatedMsg } };
-};
-
-export { SampleFunction, SampleFunctionDefinition };
+export default SlackFunction(
+  SampleFunctionDefinition,
+  ({ inputs }) => {
+    const { message } = inputs;
+    const updatedMsg =
+      `:wave: You submitted the following message: \n\n>${message}`;
+    return { outputs: { updatedMsg } };
+  },
+);

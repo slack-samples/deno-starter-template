@@ -4,11 +4,14 @@ import { SampleFunctionDefinition } from "../functions/sample_function.ts";
 const SampleWorkflow = DefineWorkflow({
   callback_id: "sample_workflow",
   title: "Sample workflow",
-  description: "A sample workflow for demonstration",
+  description: "A sample workflow",
   input_parameters: {
     properties: {
       interactivity: {
         type: Schema.slack.types.interactivity,
+      },
+      channel: {
+        type: Schema.slack.types.channel_id,
       },
     },
     required: ["interactivity"],
@@ -18,7 +21,7 @@ const SampleWorkflow = DefineWorkflow({
 const inputForm = SampleWorkflow.addStep(
   Schema.slack.functions.OpenForm,
   {
-    title: "Send a message to channel",
+    title: "Send message to channel",
     interactivity: SampleWorkflow.inputs.interactivity,
     submit_label: "Send message",
     fields: {
@@ -26,9 +29,10 @@ const inputForm = SampleWorkflow.addStep(
         name: "channel",
         title: "Channel to send message to",
         type: Schema.slack.types.channel_id,
+        default: SampleWorkflow.inputs.channel,
       }, {
         name: "message",
-        title: "Message to recipient",
+        title: "Message",
         type: Schema.types.string,
       }],
       required: ["channel", "message"],
@@ -42,13 +46,7 @@ const sampleFunctionStep = SampleWorkflow.addStep(SampleFunctionDefinition, {
 
 SampleWorkflow.addStep(Schema.slack.functions.SendMessage, {
   channel_id: inputForm.outputs.fields.channel,
-  message: [{
-    type: "section",
-    text: {
-      type: "mrkdwn",
-      text: sampleFunctionStep.outputs.updatedMsg,
-    },
-  }],
+  message: sampleFunctionStep.outputs.updatedMsg,
 });
 
 export default SampleWorkflow;
