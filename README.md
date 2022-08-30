@@ -195,22 +195,18 @@ In your function's source file, use one of the following templates to implement 
 <summary><b>Function template</b></summary>
 
 ```ts
-import type { SlackFunctionHandler } from "deno-slack-sdk/types.ts";
+import { SlackFunction } from "deno-slack-sdk/mod.ts";
 
 // Import your function's definition here
-import type { MyFunction } from "../manifest.ts";
+import { MyFunction } from "../manifest.ts";
 
 // Construct your Slack function handler, using your function's definition 
 // to enforce input and output requirements:
-const myFunction: SlackFunctionHandler<typeof MyFunction.definition> = (
-  { inputs, env },
-) => {
+export default SlackFunction(MyFunction, ({ inputs, env }) => {
   return {
     outputs: {},
   };
-};
-
-export default myFunction;
+});
 ```
 
 </details>
@@ -219,28 +215,23 @@ export default myFunction;
 <summary><b>Async function template</b></summary>
 
 ```ts
-import type { SlackFunctionHandler } from "deno-slack-sdk/types.ts";
+import { SlackFunction } from "deno-slack-sdk/mod.ts";
 
 // Import your function's definition here
-import type { MyFunction } from "../manifest.ts";
+import { MyFunction } from "../manifest.ts";
 
 // Construct your Slack function handler, using your function's definition 
 // to enforce input and output requirements:
-const myFunction: SlackFunctionHandler<typeof MyFunction.definition> = async (
-  { inputs, env },
-) => {
+export default SlackFunction(MyFunction, async ({ inputs, env }) => {
   return await {
     outputs: {},
   };
-};
-
-export default myFunction;
+});
 ```
 
 </details>
 
-A function's implementation must be the default export of the source file. When instantiating the function, use `SlackFunctionHandler` and pass in your function's `.definition` so that your required inputs and outputs will be 
-enforced.
+A function's implementation must be the default export of the source file. You can use result of calling `SlackFunction()` with your function's definition (the result of calling `DefineFunction()`) so that your required inputs and outputs will be enforced.
 
 #### Deploying Your App to Slack
 
