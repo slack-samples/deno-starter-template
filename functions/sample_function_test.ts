@@ -4,7 +4,7 @@ import SampleFunction from "./sample_function.ts";
 
 const { createContext } = SlackFunctionTester("sample_function");
 
-Deno.test("Reverse string function test", async () => {
+Deno.test("Sample function test", async () => {
   const inputs = { message: "Hello, World!" };
   const { outputs } = await SampleFunction(createContext({ inputs }));
   assertEquals(
