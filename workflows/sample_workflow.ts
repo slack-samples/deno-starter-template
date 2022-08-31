@@ -1,6 +1,11 @@
 import { DefineWorkflow, Schema } from "deno-slack-sdk/mod.ts";
 import { SampleFunctionDefinition } from "../functions/sample_function.ts";
 
+/**
+ * A Workflow is a set of steps that are executed in order. 
+ * Each step in a Workflow is a function.
+ * https://api.slack.com/future/workflows
+ */
 const SampleWorkflow = DefineWorkflow({
   callback_id: "sample_workflow",
   title: "Sample workflow",
@@ -18,6 +23,11 @@ const SampleWorkflow = DefineWorkflow({
   },
 });
 
+/**
+ * For collecting input from users, we recommend the
+ * built-in OpenForm function as a first step.
+ * https://api.slack.com/future/functions#open-a-form
+ */
 const inputForm = SampleWorkflow.addStep(
   Schema.slack.functions.OpenForm,
   {
@@ -34,6 +44,7 @@ const inputForm = SampleWorkflow.addStep(
         name: "message",
         title: "Message",
         type: Schema.types.string,
+        long: true,
       }],
       required: ["channel", "message"],
     },
