@@ -1,13 +1,27 @@
 # Deno Starter Template
 
-This is a generic Deno template used to build out Slack apps using the Slack
+This is a scaffolded Deno template used to build out Slack apps using the Slack
 CLI.
+
+**Guide Outline**:
+
+- [Setup](#setup)
+  - [Install the Slack CLI](#install-the-slack-cli)
+  - [Clone the Template](#clone-the-template)
+- [Create a Link Trigger](#create-a-link-trigger)
+- [Running Your Project Locally](#running-your-project-locally)
+- [Deploying Your App](#deploying-your-app)
+  - [Viewing Activity Logs](#viewing-activity-logs)
+- [Project Structure](#project-structure)
+- [Resources](#resources)
+
+---
+
+## Setup
 
 Before getting started, make sure you have a development workspace where you
 have permissions to install apps. If you don’t have one set up, go ahead and
 [create one](https://slack.com/create).
-
-## Setup
 
 ### Install the Slack CLI
 
@@ -15,24 +29,69 @@ To use this template, you first need to install and configure the Slack CLI.
 Step-by-step instructions can be found in our
 [Quickstart Guide](https://api.slack.com/future/quickstart).
 
-## Running Your Project Locally
+### Clone the Template
 
-While building your app, you can see your changes propagated to your workspace
-in real-time with `slack run`. You'll know an app is the development version
-because the name has the string `(dev)` appended.
+Start by cloning this repository:
 
 ```zsh
 # Clone this project onto your machine
-$ slack create my-app -t slack-samples/deno-hello-world
+$ slack create my-app -t slack-samples/deno-starter-template
 
 # Change into this project directory
 $ cd my-app
+```
 
+## Create a Link Trigger
+
+[Triggers](https://api.slack.com/future/triggers) are what cause Workflows to
+run. These Triggers can be invoked by a user, or automatically as a response to
+an event within Slack.
+
+A [Link Trigger](https://api.slack.com/future/triggers/link) is a type of
+Trigger that generates a **Shortcut URL** which, when posted in a channel or
+added as a bookmark, becomes a link. When clicked, the Link Trigger will run the
+associated Workflow.
+
+Link Triggers are _unique to each installed version of your app_. This means
+that Shortcut URLs will be different across each workspace, as well as between
+[locally run](#running-your-project-locally) and
+[deployed apps](#deploying-your-app). When creating a Trigger, you must select
+the Workspace that you'd like to create the Trigger in. Each Workspace has a
+development version (denoted by `(dev)`), as well as a deployed version.
+
+To create a Link Trigger for the Workflow in this template, run the following
+command:
+
+```zsh
+$ slack trigger create --trigger-def triggers/sample_trigger.ts
+```
+
+After selecting a Workspace, the output provided will include the Link Trigger
+Shortcut URL. Copy and paste this URL into a channel as a message, or add it as
+a bookmark in a channel of the Workspace you selected.
+
+**Note: this link won't run the Workflow until the app is either running locally
+or deployed!** Read on to learn how to run your app locally and eventually
+deploy it to Slack hosting.
+
+## Running Your Project Locally
+
+While building your app, you can see your changes propagated to your workspace
+in real-time with `slack run`. In both the CLI and in Slack, you'll know an app
+is the development version if the name has the string `(dev)` appended.
+
+```zsh
 # Run app locally
 $ slack run
 
 Connected, awaiting events
 ```
+
+Once running, click the
+[previously created Shortcut URL](#create-a-link-trigger) associated with the
+`(dev)` version of your app. This should start the included sample Workflow.
+
+To stop running locally, press `<CTRL> + C` to end the process.
 
 ## Testing
 
@@ -48,11 +107,24 @@ $ deno test
 
 ## Deploying Your App
 
-When you're done with development, you can deploy your app to a production
-workspace using `slack deploy`:
+Once you're done with development, you can deploy the production version of your
+app to Slack hosting using `slack deploy`:
 
 ```zsh
 $ slack deploy
+```
+
+After deploying, [create a new Link Trigger](#create-a-link-trigger) for the
+production version of your app (not appended with `(dev)`). Once the Trigger is
+invoked, the Workflow should run just as it did in when developing locally.
+
+### Viewing Activity Logs
+
+Activity logs for the production instance of your application can be viewed with
+the `slack activity` command:
+
+```zsh
+$ slack activity
 ```
 
 ## Project Structure
@@ -78,8 +150,9 @@ Functions can be used independently or as steps in Workflows.
 A [Workflow](https://api.slack.com/future/workflows) is a set of steps that are
 executed in order. Each step in a Workflow is a function.
 
-Workflows can be configured to run without user input or they can wait for input
-via form before continuing to the next step.
+Workflows can be configured to run without user input or they can collect input
+by beginning with a [form](https://api.slack.com/future/forms) before continuing
+to the next step.
 
 ### `/triggers`
 
