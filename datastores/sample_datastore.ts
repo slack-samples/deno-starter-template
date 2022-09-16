@@ -1,7 +1,7 @@
 import { DefineDatastore, Schema } from "deno-slack-sdk/mod.ts";
 
 /**
- * Datastores are a Slack-hosted location to store and retrieve 
+ * Datastores are a Slack-hosted location to store and retrieve
  * data for your next-generation apps.
  * https://api.slack.com/future/datastores
  */
