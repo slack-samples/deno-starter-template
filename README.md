@@ -11,7 +11,6 @@ CLI.
 - [Create a Link Trigger](#create-a-link-trigger)
 - [Running Your Project Locally](#running-your-project-locally)
 - [Testing](#testing)
-- [Datastores](#datastores)
 - [Deploying Your App](#deploying-your-app)
   - [Viewing Activity Logs](#viewing-activity-logs)
 - [Project Structure](#project-structure)
@@ -107,10 +106,6 @@ Run all tests with `deno test`:
 $ deno test
 ```
 
-## Datastores
-
-If your app needs to store any data, a datastore would be the right place for that. For an example of a datastore, see `datastores/sample_datastore.ts`. Remember to add the `datastores:write`/`datastores:read` scopes and uncomment the `datastores` key in your manifest file if you are using a datastore.
-
 ## Deploying Your App
 
 Once you're done with development, you can deploy the production version of your
@@ -165,10 +160,6 @@ to the next step.
 [Triggers](https://api.slack.com/future/triggers) determine when Workflows are
 executed. A trigger file describes a scenario in which a workflow should be run,
 such as a user pressing a button or when a specific event occurs.
-
-### `/datastores`
-
-[Datastores](https://api.slack.com/future/datastores) are a Slack-hosted location to store and retrieve data for your next-generation apps.
 
 ## Resources
 
