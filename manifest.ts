@@ -12,5 +12,6 @@ export default Manifest({
   icon: "assets/icon.png",
   workflows: [SampleWorkflow],
   outgoingDomains: [],
+  // datastores: [SampleDatastore], 
   botScopes: ["commands", "chat:write", "chat:write.public"],
 });
