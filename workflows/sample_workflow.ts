@@ -60,4 +60,4 @@ SampleWorkflow.addStep(Schema.slack.functions.SendMessage, {
   message: sampleFunctionStep.outputs.updatedMsg,
 });
 
-export default SampleWorkflow;
+export { SampleWorkflow };

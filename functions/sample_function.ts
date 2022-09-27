@@ -1,4 +1,7 @@
 import { DefineFunction, Schema, SlackFunction } from "deno-slack-sdk/mod.ts";
+import type { SlackFunctionHandler } from "deno-slack-sdk/types.ts";
+import { saveNewObject } from "../datastore/save_object.ts";
+import type { SampleObject } from "../types/sample_object.ts";
 
 /**
  * Functions are reusable building blocks of automation that accept
@@ -31,12 +34,19 @@ export const SampleFunctionDefinition = DefineFunction({
   },
 });
 
-export default SlackFunction(
-  SampleFunctionDefinition,
-  ({ inputs }) => {
-    const { message } = inputs;
-    const updatedMsg =
-      `:wave: You submitted the following message: \n\n>${message}`;
-    return { outputs: { updatedMsg } };
-  },
-);
+const sampleFunction: SlackFunctionHandler<
+  typeof SampleFunctionDefinition.definition
+> = async (
+  { inputs, token },
+) => {
+  const { message } = inputs;
+  const sampleObj = <SampleObject> message;
+  sampleObj.original_msg = message;
+  const updatedMsg =
+    `:wave: You submitted the following message: \n\n>${message}`;
+  sampleObj.updated_msg = updatedMsg;
+  await saveNewObject(token, sampleObj);
+  return await { outputs: { updatedMsg } };
+};
+
+export default sampleFunction;
