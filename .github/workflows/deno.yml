@@ -1,4 +1,4 @@
-name: Deno
+name: Deno app build and testing
 
 on:
   push:
@@ -9,6 +9,7 @@ on:
 jobs:
   deno:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
 
     steps:
       - name: Setup repo
