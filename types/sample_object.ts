@@ -1,5 +1,5 @@
 export type SampleObject = {
-  object_id?: string | undefined;
-  original_msg?: string | undefined;
-  updated_msg?: string | undefined;
+  object_id: string;
+  original_msg: string;
+  updated_msg: string;
 };

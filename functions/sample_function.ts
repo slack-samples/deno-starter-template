@@ -39,11 +39,10 @@ const sampleFunction: SlackFunctionHandler<
 > = async (
   { inputs, token },
 ) => {
-  const { message } = inputs;
-  const sampleObj = <SampleObject> message;
-  sampleObj.original_msg = message;
+  const sampleObj = {} as SampleObject;
+  sampleObj.original_msg = inputs.message;
   const updatedMsg =
-    `:wave: You submitted the following message: \n\n>${message}`;
+    `:wave: You submitted the following message: \n\n>${inputs.message}`;
   sampleObj.updated_msg = updatedMsg;
   await saveNewObject(token, sampleObj);
   return await { outputs: { updatedMsg } };

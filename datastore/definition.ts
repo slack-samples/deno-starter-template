@@ -7,10 +7,10 @@ const SampleObject = DefineDatastore({
     object_id: {
       type: Schema.types.string,
     },
-    originalMsg: {
+    original_msg: {
       type: Schema.types.string,
     },
-    updatedMsg: {
+    updated_msg: {
       type: Schema.types.string,
     },
   },
