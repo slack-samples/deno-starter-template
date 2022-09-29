@@ -1,5 +1,5 @@
 import { Trigger } from "deno-slack-api/types.ts";
-import SampleWorkflow from "../workflows/sample_workflow.ts";
+import { SampleWorkflow } from "../workflows/sample_workflow.ts";
 /**
  * Triggers determine when Workflows are executed. A trigger
  * file describes a scenario in which a workflow should be run,
@@ -12,11 +12,11 @@ const sampleTrigger: Trigger<typeof SampleWorkflow.definition> = {
   description: "A sample trigger",
   workflow: "#/workflows/sample_workflow",
   inputs: {
-    interactivity: {
+    interactivity_context: {
       value: "{{data.interactivity}}",
     },
-    channel: {
-      value: "{{data.channel_id}}",
+    user: {
+      value: "{{data.user_id}}",
     },
   },
 };

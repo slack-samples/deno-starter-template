@@ -1,7 +1,5 @@
 import { DefineFunction, Schema, SlackFunction } from "deno-slack-sdk/mod.ts";
-import type { SlackFunctionHandler } from "deno-slack-sdk/types.ts";
-import { saveNewObject } from "../datastore/save_object.ts";
-import type { SampleObject } from "../types/sample_object.ts";
+import { SlackAPI } from "deno-slack-api/mod.ts";
 
 /**
  * Functions are reusable building blocks of automation that accept
@@ -20,6 +18,10 @@ export const SampleFunctionDefinition = DefineFunction({
         type: Schema.types.string,
         description: "Message to be posted",
       },
+      user: {
+        type: Schema.slack.types.user_id,
+        description: "The user invoking the workflow",
+      },
     },
     required: ["message"],
   },
@@ -34,18 +36,28 @@ export const SampleFunctionDefinition = DefineFunction({
   },
 });
 
-const sampleFunction: SlackFunctionHandler<
-  typeof SampleFunctionDefinition.definition
-> = async (
-  { inputs, token },
-) => {
-  const sampleObj = {} as SampleObject;
-  sampleObj.original_msg = inputs.message;
-  const updatedMsg =
-    `:wave: You submitted the following message: \n\n>${inputs.message}`;
-  sampleObj.updated_msg = updatedMsg;
-  await saveNewObject(token, sampleObj);
-  return await { outputs: { updatedMsg } };
-};
+export default SlackFunction(
+  SampleFunctionDefinition,
+  ({ inputs, token }) => {
+    const sampleObject = {} as Record<string, unknown>;
+    sampleObject.original_msg = inputs.message;
 
-export default sampleFunction;
+    //grab the current user via interactivity, and output that in the
+    const updatedMsg = `:wave: ` + `<@${inputs.user}>` +
+      ` submitted the following message: \n\n>${inputs.message}`;
+    sampleObject.updated_msg = updatedMsg;
+    const client = SlackAPI(token, {});
+    sampleObject.object_id = "OBJ-" +
+      (Math.floor(100000 + Math.random() * 900000));
+
+    //save the sample Object
+    client.apps.datastore.put(
+      {
+        datastore: "SampleObjects",
+        item: sampleObject,
+      },
+    );
+
+    return { outputs: { updatedMsg } };
+  },
+);

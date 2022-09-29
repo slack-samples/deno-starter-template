@@ -1,6 +1,6 @@
 import { Manifest } from "deno-slack-sdk/mod.ts";
 import { SampleWorkflow } from "./workflows/sample_workflow.ts";
-import { SampleObject } from "./datastore/definition.ts";
+import { SampleObjectDatastore } from "./datastore/definition.ts";
 
 /**
  * The app manifest contains the app's configuration. This
@@ -13,7 +13,7 @@ export default Manifest({
   icon: "assets/icon.png",
   workflows: [SampleWorkflow],
   outgoingDomains: [],
-  datastores: [SampleObject],
+  datastores: [SampleObjectDatastore],
   botScopes: [
     "commands",
     "chat:write",

@@ -12,14 +12,17 @@ const SampleWorkflow = DefineWorkflow({
   description: "A sample workflow",
   input_parameters: {
     properties: {
-      interactivity: {
+      interactivity_context: {
         type: Schema.slack.types.interactivity,
       },
       channel: {
         type: Schema.slack.types.channel_id,
       },
+      user: {
+        type: Schema.slack.types.user_id,
+      },
     },
-    required: ["interactivity"],
+    required: ["user", "interactivity_context"],
   },
 });
 
@@ -32,7 +35,7 @@ const inputForm = SampleWorkflow.addStep(
   Schema.slack.functions.OpenForm,
   {
     title: "Send message to channel",
-    interactivity: SampleWorkflow.inputs.interactivity,
+    interactivity: SampleWorkflow.inputs.interactivity_context,
     submit_label: "Send message",
     fields: {
       elements: [{
@@ -53,6 +56,7 @@ const inputForm = SampleWorkflow.addStep(
 
 const sampleFunctionStep = SampleWorkflow.addStep(SampleFunctionDefinition, {
   message: inputForm.outputs.fields.message,
+  user: SampleWorkflow.inputs.user,
 });
 
 SampleWorkflow.addStep(Schema.slack.functions.SendMessage, {
