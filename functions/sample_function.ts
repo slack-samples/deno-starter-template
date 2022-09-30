@@ -1,5 +1,4 @@
 import { DefineFunction, Schema, SlackFunction } from "deno-slack-sdk/mod.ts";
-import { SlackAPI } from "deno-slack-api/mod.ts";
 
 /**
  * Functions are reusable building blocks of automation that accept
@@ -40,8 +39,7 @@ export const SampleFunctionDefinition = DefineFunction({
 // updated object into the Slack hosted Datastore, and returns the updated message.
 export default SlackFunction(
   SampleFunctionDefinition,
-  async ({ inputs, token }) => {
-    const client = SlackAPI(token, {});
+  async ({ inputs, client }) => {
     const uuid = crypto.randomUUID();
 
     // inputs.user is set from the interactivity_context defined in sample_trigger.ts
