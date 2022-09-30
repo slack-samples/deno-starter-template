@@ -1,5 +1,4 @@
 import { DefineDatastore, Schema } from "deno-slack-sdk/mod.ts";
-import { SlackAPI } from "deno-slack-api/mod.ts";
 
 const SampleObjectDatastore = DefineDatastore({
   name: "SampleObjects",
