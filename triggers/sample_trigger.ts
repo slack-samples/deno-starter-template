@@ -12,7 +12,7 @@ const sampleTrigger: Trigger<typeof SampleWorkflow.definition> = {
   description: "A sample trigger",
   workflow: "#/workflows/sample_workflow",
   inputs: {
-    interactivity_context: {
+    interactivity: {
       value: "{{data.interactivity}}",
     },
     user: {
