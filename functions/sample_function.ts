@@ -41,23 +41,22 @@ export const SampleFunctionDefinition = DefineFunction({
 export default SlackFunction(
   SampleFunctionDefinition,
   async ({ inputs, token }) => {
+    const client = SlackAPI(token, {});
     const sampleObject = {} as Record<string, unknown>;
+    const uuid = crypto.randomUUID();
     sampleObject.original_msg = inputs.message;
 
-    // inputs.user is set from the interactivity_context we defined in sample_trigger.ts
-    // More info on interactivity here: https://api.slack.com/future/forms#add-interactivity
+    // inputs.user is set from the interactivity_context defined in sample_trigger.ts
+    // https://api.slack.com/future/forms#add-interactivity
     const updatedMsg = `:wave: ` + `<@${inputs.user}>` +
       ` submitted the following message: \n\n>${inputs.message}`;
     sampleObject.updated_msg = updatedMsg;
 
-    //initialize SlackAPI so we can use the Slack hosted Datastore
-    const client = SlackAPI(token, {});
-
     //set unique object id, this will be our primary key in the Datastore
-    sampleObject.object_id = "OBJ-" +
-      await (Math.floor(100000 + Math.random() * 900000));
+    sampleObject.object_id = "OBJ-" + uuid;
 
-    //save the sample object by calling datastore.put: https://api.slack.com/future/datastores#put
+    // Save the sample object to the datastore
+    // https://api.slack.com/future/datastores
     await client.apps.datastore.put(
       {
         datastore: "SampleObjects",
