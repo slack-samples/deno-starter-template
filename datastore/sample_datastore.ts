@@ -16,4 +16,4 @@ const SampleObjectDatastore = DefineDatastore({
   },
 });
 
-export { SampleObjectDatastore };
+export default SampleObjectDatastore;
