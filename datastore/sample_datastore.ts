@@ -11,7 +11,7 @@ const SampleObjectDatastore = DefineDatastore({
       type: Schema.types.string,
     },
     updated_msg: {
-      type: Schema.types.object,
+      type: Schema.types.string,
     },
   },
 });
