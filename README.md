@@ -10,6 +10,7 @@ CLI.
   - [Clone the Template](#clone-the-template)
 - [Create a Link Trigger](#create-a-link-trigger)
 - [Running Your Project Locally](#running-your-project-locally)
+- [Datastores](#datastores)
 - [Testing](#testing)
 - [Deploying Your App](#deploying-your-app)
   - [Viewing Activity Logs](#viewing-activity-logs)
@@ -95,6 +96,13 @@ Once running, click the
 
 To stop running locally, press `<CTRL> + C` to end the process.
 
+## Datastores
+
+If your app needs to store any data, a datastore would be the right place for
+that. For an example of a datastore, see `datastores/sample_datastore.ts`. Using
+a datastore also requires the `datastore:write`/`datastore:read` scopes to be
+present in your manifest.
+
 ## Testing
 
 For an example of how to test a function, see
@@ -161,6 +169,12 @@ to the next step.
 [Triggers](https://api.slack.com/future/triggers) determine when Workflows are
 executed. A trigger file describes a scenario in which a workflow should be run,
 such as a user pressing a button or when a specific event occurs.
+
+### `/datastores`
+
+[Datastores](https://api.slack.com/future/datastores) can securely store and
+retrieve data for your application. Required scopes to use datastores include
+`datastore:write` and `datastore:read`.
 
 ## Resources
 

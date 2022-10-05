@@ -1,5 +1,5 @@
 import { DefineFunction, Schema, SlackFunction } from "deno-slack-sdk/mod.ts";
-import SampleObjectDatastore from "../datastore/sample_datastore.ts";
+import SampleObjectDatastore from "../datastores/sample_datastore.ts";
 /**
  * Functions are reusable building blocks of automation that accept
  * inputs, perform calculations, and provide outputs. Functions can
