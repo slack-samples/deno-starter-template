@@ -1,5 +1,5 @@
 import { DefineFunction, Schema, SlackFunction } from "deno-slack-sdk/mod.ts";
-
+import SampleObjectDatastore from "../datastore/sample_datastore.ts";
 /**
  * Functions are reusable building blocks of automation that accept
  * inputs, perform calculations, and provide outputs. Functions can
@@ -55,7 +55,7 @@ export default SlackFunction(
 
     // Save the sample object to the datastore
     // https://api.slack.com/future/datastores
-    await client.apps.datastore.put(
+    await client.apps.datastore.put<typeof SampleObjectDatastore.definition>(
       {
         datastore: "SampleObjects",
         item: sampleObject,
