@@ -5,6 +5,9 @@ import { SampleFunctionDefinition } from "../functions/sample_function.ts";
  * A Workflow is a set of steps that are executed in order.
  * Each step in a Workflow is a function.
  * https://api.slack.com/future/workflows
+ *
+ * This workflow uses interactivity. Learn more at:
+ * https://api.slack.com/future/forms#add-interactivity
  */
 const SampleWorkflow = DefineWorkflow({
   callback_id: "sample_workflow",
@@ -18,8 +21,11 @@ const SampleWorkflow = DefineWorkflow({
       channel: {
         type: Schema.slack.types.channel_id,
       },
+      user: {
+        type: Schema.slack.types.user_id,
+      },
     },
-    required: ["interactivity"],
+    required: ["user", "interactivity"],
   },
 });
 
@@ -53,6 +59,7 @@ const inputForm = SampleWorkflow.addStep(
 
 const sampleFunctionStep = SampleWorkflow.addStep(SampleFunctionDefinition, {
   message: inputForm.outputs.fields.message,
+  user: SampleWorkflow.inputs.user,
 });
 
 SampleWorkflow.addStep(Schema.slack.functions.SendMessage, {
