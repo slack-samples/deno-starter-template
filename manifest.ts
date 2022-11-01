@@ -10,7 +10,7 @@ import SampleObjectDatastore from "./datastores/sample_datastore.ts";
 export default Manifest({
   name: "deno-starter-template",
   description: "A template for building Slack apps with Deno",
-  icon: "assets/icon.png",
+  icon: "assets/default_new_app_icon.png",
   workflows: [SampleWorkflow],
   outgoingDomains: [],
   datastores: [SampleObjectDatastore],
