@@ -1,6 +1,6 @@
 {
   "imports": {
-    "deno-slack-sdk/": "https://deno.land/x/deno_slack_sdk@1.4.2/",
-    "deno-slack-api/": "https://deno.land/x/deno_slack_api@1.4.0/"
+    "deno-slack-sdk/": "https://deno.land/x/deno_slack_sdk@1.4.3/",
+    "deno-slack-api/": "https://deno.land/x/deno_slack_api@1.5.0/"
   }
 }
