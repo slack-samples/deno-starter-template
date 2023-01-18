@@ -3,7 +3,7 @@ import SampleObjectDatastore from "../datastores/sample_datastore.ts";
 /**
  * Functions are reusable building blocks of automation that accept
  * inputs, perform calculations, and provide outputs. Functions can
- * be used independently or as steps in Workflows.
+ * be used independently or as steps in workflows.
  * https://api.slack.com/future/functions/custom
  */
 export const SampleFunctionDefinition = DefineFunction({
@@ -36,7 +36,7 @@ export const SampleFunctionDefinition = DefineFunction({
 });
 
 // This function takes the input from the open form step, adds formatting, saves our
-// updated object into the Slack hosted Datastore, and returns the updated message.
+// updated object into the Slack hosted datastore, and returns the updated message.
 export default SlackFunction(
   SampleFunctionDefinition,
   async ({ inputs, client }) => {

@@ -46,34 +46,34 @@ $ cd my-app
 
 ## Create a Link Trigger
 
-[Triggers](https://api.slack.com/future/triggers) are what cause Workflows to
-run. These Triggers can be invoked by a user, or automatically as a response to
+[Triggers](https://api.slack.com/future/triggers) are what cause workflows to
+run. These triggers can be invoked by a user, or automatically as a response to
 an event within Slack.
 
-A [Link Trigger](https://api.slack.com/future/triggers/link) is a type of
-Trigger that generates a **Shortcut URL** which, when posted in a channel or
-added as a bookmark, becomes a link. When clicked, the Link Trigger will run the
-associated Workflow.
+A [link trigger](https://api.slack.com/future/triggers/link) is a type of
+trigger that generates a **Shortcut URL** which, when posted in a channel or
+added as a bookmark, becomes a link. When clicked, the link trigger will run the
+associated workflow.
 
-Link Triggers are _unique to each installed version of your app_. This means
+Link triggers are _unique to each installed version of your app_. This means
 that Shortcut URLs will be different across each workspace, as well as between
 [locally run](#running-your-project-locally) and
-[deployed apps](#deploying-your-app). When creating a Trigger, you must select
-the Workspace that you'd like to create the Trigger in. Each Workspace has a
+[deployed apps](#deploying-your-app). When creating a trigger, you must select
+the Workspace that you'd like to create the trigger in. Each Workspace has a
 development version (denoted by `(dev)`), as well as a deployed version.
 
-To create a Link Trigger for the Workflow in this template, run the following
+To create a link trigger for the workflow in this template, run the following
 command:
 
 ```zsh
 $ slack trigger create --trigger-def triggers/sample_trigger.ts
 ```
 
-After selecting a Workspace, the output provided will include the Link Trigger
+After selecting a Workspace, the output provided will include the link trigger
 Shortcut URL. Copy and paste this URL into a channel as a message, or add it as
 a bookmark in a channel of the Workspace you selected.
 
-**Note: this link won't run the Workflow until the app is either running locally
+**Note: this link won't run the workflow until the app is either running locally
 or deployed!** Read on to learn how to run your app locally and eventually
 deploy it to Slack hosting.
 
@@ -92,7 +92,7 @@ Connected, awaiting events
 
 Once running, click the
 [previously created Shortcut URL](#create-a-link-trigger) associated with the
-`(dev)` version of your app. This should start the included sample Workflow.
+`(dev)` version of your app. This should start the included sample workflow.
 
 To stop running locally, press `<CTRL> + C` to end the process.
 
@@ -124,9 +124,9 @@ app to Slack hosting using `slack deploy`:
 $ slack deploy
 ```
 
-After deploying, [create a new Link Trigger](#create-a-link-trigger) for the
-production version of your app (not appended with `(dev)`). Once the Trigger is
-invoked, the Workflow should run just as it did in when developing locally.
+After deploying, [create a new link trigger](#create-a-link-trigger) for the
+production version of your app (not appended with `(dev)`). Once the trigger is
+invoked, the workflow should run just as it did in when developing locally.
 
 ### Viewing Activity Logs
 
@@ -153,12 +153,12 @@ script hooks that are executed by the CLI and implemented by the SDK.
 
 [Functions](https://api.slack.com/future/functions) are reusable building blocks
 of automation that accept inputs, perform calculations, and provide outputs.
-Functions can be used independently or as steps in Workflows.
+Functions can be used independently or as steps in workflows.
 
 ### `/workflows`
 
-A [Workflow](https://api.slack.com/future/workflows) is a set of steps that are
-executed in order. Each step in a Workflow is a function.
+A [workflow](https://api.slack.com/future/workflows) is a set of steps that are
+executed in order. Each step in a workflow is a function.
 
 Workflows can be configured to run without user input or they can collect input
 by beginning with a [form](https://api.slack.com/future/forms) before continuing
@@ -166,7 +166,7 @@ to the next step.
 
 ### `/triggers`
 
-[Triggers](https://api.slack.com/future/triggers) determine when Workflows are
+[Triggers](https://api.slack.com/future/triggers) determine when workflows are
 executed. A trigger file describes a scenario in which a workflow should be run,
 such as a user pressing a button or when a specific event occurs.
 
