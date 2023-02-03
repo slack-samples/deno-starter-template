@@ -22,7 +22,7 @@ jobs:
           title: Update dependencies
           body: >
             Dependencies updated by [udd](https://github.com/hayd/deno-udd).
-          branch: deno-dependency-updates
+          branch: pre-release
           author: GitHub <noreply@github.com>
           delete-branch: true
       - name: Retrieve commit sha
