@@ -62,7 +62,7 @@ that Shortcut URLs will be different across each workspace, as well as between
 the Workspace that you'd like to create the trigger in. Each Workspace has a
 development version (denoted by `(dev)`), as well as a deployed version.
 
-To create the sample link trigger for the sample workflow in this template, run 
+To create the sample link trigger for the sample workflow in this template, run
 the following command:
 
 ```zsh
@@ -76,10 +76,10 @@ Running this command will bring up the workspace selector prompt:
 > Install to a new workspace
 ```
 
-In this case, we haven't installed this trigger to a workspace yet, so we are 
-prompted to install the trigger to a new workspace. Choose that option. 
+In this case, we haven't installed this trigger to a workspace yet, so we are
+prompted to install the trigger to a new workspace. Choose that option.
 
-Next, pick the workspace for the trigger to be installed to. Select the 
+Next, pick the workspace for the trigger to be installed to. Select the
 workspace that has an active CLI authorization:
 
 ```zsh
@@ -89,22 +89,22 @@ workspace that has an active CLI authorization:
   someotherworkspace T013ABC2345
 ```
 
-_If you need to authorize your CLI to your workspace, run `slack login` before 
+_If you need to authorize your CLI to your workspace, run `slack login` before
 moving on._
 
-When you select your workspace, you will be prompted to choose an app environment 
-for the trigger. The Local app environment means that this trigger will only be 
-available when you run the app using the local development server that comes with 
-the CLI. The Deployed app environment is what you would select if you were 
-readying your Run On Slack app for production deployment. 
+When you select your workspace, you will be prompted to choose an app
+environment for the trigger. The Local app environment means that this trigger
+will only be available when you run the app using the local development server
+that comes with the CLI. The Deployed app environment is what you would select
+if you were readying your Run On Slack app for production deployment.
 
-So that we can interact with our app while running the local development server, 
-choose the Local app environment option, and the CLI will finish installing your 
+So that we can interact with our app while running the local development server,
+choose the Local app environment option, and the CLI will finish installing your
 trigger.
 
-Once the CLI is done, the output provided will include the link trigger
-Shortcut URL. Copy and paste this URL into a channel as a message, or add it as
-a bookmark in a channel of the Workspace you selected.
+Once the CLI is done, the output provided will include the link trigger Shortcut
+URL. Copy and paste this URL into a channel as a message, or add it as a
+bookmark in a channel of the Workspace you selected.
 
 **Note: this link won't run the workflow until the app is either running locally
 or deployed!** Read on to learn how to run your app locally and eventually
