@@ -73,9 +73,9 @@ command:
 $ slack trigger create --trigger-def triggers/sample_trigger.ts
 ```
 
-Once the CLI is done, the output provided will include the link trigger Shortcut
-URL. Copy and paste this URL into a channel as a message, or add it as a
-bookmark in a channel of the workspace you selected.
+After selecting a workspace and environment, the output provided will include
+the link trigger Shortcut URL. Copy and paste this URL into a channel as a
+message, or add it as a bookmark in a channel of the workspace you selected.
 
 **Note: this link won't run the workflow until the app is either running locally
 or deployed!** Read on to learn how to run your app locally and eventually
