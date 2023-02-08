@@ -58,9 +58,13 @@ associated workflow.
 Link triggers are _unique to each installed version of your app_. This means
 that Shortcut URLs will be different across each workspace, as well as between
 [locally run](#running-your-project-locally) and
-[deployed apps](#deploying-your-app). When creating a trigger, you must select
-the Workspace that you'd like to create the trigger in. Each Workspace has a
-development version (denoted by `(dev)`), as well as a deployed version.
+[deployed apps](#deploying-your-app).
+
+When creating a trigger, you must select the workspace and environment that
+you'd like to create the trigger in. Each workspace has a local development
+version (denoted by `(dev)`), as well as a deployed version. Triggers created in
+a local environment will only be available to use when running the application
+locally.
 
 To create a link trigger for the workflow in this template, run the following
 command:
@@ -69,21 +73,9 @@ command:
 $ slack trigger create --trigger-def triggers/sample_trigger.ts
 ```
 
-Running this command will bring up the workspace selector prompt.
-
-When you select your workspace, you will be prompted to choose an app
-environment for the trigger. The Local app environment means that this trigger
-will only be available when you run the app using the local development server
-that comes with the CLI. The Deployed app environment is what you would select
-if you were readying your Run On Slack app for production deployment.
-
-So that we can interact with our app while running the local development server,
-choose the Local app environment option, and the CLI will finish installing your
-trigger.
-
 Once the CLI is done, the output provided will include the link trigger Shortcut
 URL. Copy and paste this URL into a channel as a message, or add it as a
-bookmark in a channel of the Workspace you selected.
+bookmark in a channel of the workspace you selected.
 
 **Note: this link won't run the workflow until the app is either running locally
 or deployed!** Read on to learn how to run your app locally and eventually
