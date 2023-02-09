@@ -58,9 +58,13 @@ associated workflow.
 Link triggers are _unique to each installed version of your app_. This means
 that Shortcut URLs will be different across each workspace, as well as between
 [locally run](#running-your-project-locally) and
-[deployed apps](#deploying-your-app). When creating a trigger, you must select
-the Workspace that you'd like to create the trigger in. Each Workspace has a
-development version (denoted by `(dev)`), as well as a deployed version.
+[deployed apps](#deploying-your-app).
+
+When creating a trigger, you must select the workspace and environment that
+you'd like to create the trigger in. Each workspace has a local development
+version (denoted by `(dev)`), as well as a deployed version. Triggers created in
+a local environment will only be available to use when running the application
+locally.
 
 To create a link trigger for the workflow in this template, run the following
 command:
@@ -69,9 +73,9 @@ command:
 $ slack trigger create --trigger-def triggers/sample_trigger.ts
 ```
 
-After selecting a Workspace, the output provided will include the link trigger
-Shortcut URL. Copy and paste this URL into a channel as a message, or add it as
-a bookmark in a channel of the Workspace you selected.
+After selecting a workspace and environment, the output provided will include
+the link trigger Shortcut URL. Copy and paste this URL into a channel as a
+message, or add it as a bookmark in a channel of the workspace you selected.
 
 **Note: this link won't run the workflow until the app is either running locally
 or deployed!** Read on to learn how to run your app locally and eventually
