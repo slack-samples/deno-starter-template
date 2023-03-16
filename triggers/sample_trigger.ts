@@ -15,6 +15,9 @@ const sampleTrigger: Trigger<typeof SampleWorkflow.definition> = {
     interactivity: {
       value: "{{data.interactivity}}",
     },
+    channel: {
+      value: "{{data.channel_id}}",
+    },
     user: {
       value: "{{data.user_id}}",
     },
