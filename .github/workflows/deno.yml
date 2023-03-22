@@ -28,3 +28,6 @@ jobs:
 
       - name: Run tests
         run: deno test
+
+      - name: Run type check
+        run: deno check *.ts && deno check **/*.ts
