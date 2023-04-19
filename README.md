@@ -79,7 +79,7 @@ that Shortcut URLs will be different across each workspace, as well as between
 [deployed apps](#deploying-your-app).
 
 When creating a trigger, you must select the workspace and environment that
-you'd like to create the trigger in. Each workspace has a local development
+you'd like to create the trigger in. Each workspace can have a local development
 version (denoted by `(local)`), as well as a deployed version. Triggers created
 in a local environment will only be available to use when running the
 application locally.
