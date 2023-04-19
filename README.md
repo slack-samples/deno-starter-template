@@ -61,7 +61,7 @@ To stop running locally, press `<CTRL> + C` to end the process.
 
 ## Creating Triggers
 
-When you run or deploy your project, the CLI will prompt you to create a new
+When you `run` or `deploy` your project, the CLI will prompt you to create a new
 trigger if one is found in the `triggers/` directory.
 
 [Triggers](https://api.slack.com/future/triggers) are what cause workflows to
