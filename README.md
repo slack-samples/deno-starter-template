@@ -61,12 +61,16 @@ To stop running locally, press `<CTRL> + C` to end the process.
 
 ## Creating Triggers
 
-When you `run` or `deploy` your project, the CLI will prompt you to create a new
-trigger if one is found in the `triggers/` directory.
-
 [Triggers](https://api.slack.com/future/triggers) are what cause workflows to
 run. These triggers can be invoked by a user, or automatically as a response to
 an event within Slack.
+
+When you `run` or `deploy` your project for the first time, the CLI will prompt
+you to create a trigger if one is found in the `triggers/` directory. For any
+subsequent triggers added to the application, each must be
+[manually added using the `trigger create` command](#manual-trigger-creation).
+
+### Link Triggers
 
 A [link trigger](https://api.slack.com/future/triggers/link) is a type of
 trigger that generates a **Shortcut URL** which, when posted in a channel or
@@ -131,7 +135,7 @@ $ slack deploy
 After deploying for the first time, you'll be prompted to
 [create a new link trigger](#creating-triggers) for the production version of
 your app. When that trigger is invoked, the workflow should run just as it did
-in when developing locally (but without requiring your server to be running).
+when developing locally (but without requiring your server to be running).
 
 ## Viewing Activity Logs
 
