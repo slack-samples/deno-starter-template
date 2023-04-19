@@ -128,7 +128,7 @@ app to Slack hosting using `slack deploy`:
 $ slack deploy
 ```
 
-After deploying, you'll be prompted to
+After deploying for the first time, you'll be prompted to
 [create a new link trigger](#creating-triggers) for the production version of
 your app. When that trigger is invoked, the workflow should run just as it did
 in when developing locally (but without requiring your server to be running).
