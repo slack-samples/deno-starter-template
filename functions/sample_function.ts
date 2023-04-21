@@ -1,10 +1,11 @@
 import { DefineFunction, Schema, SlackFunction } from "deno-slack-sdk/mod.ts";
 import SampleObjectDatastore from "../datastores/sample_datastore.ts";
+
 /**
  * Functions are reusable building blocks of automation that accept
  * inputs, perform calculations, and provide outputs. Functions can
  * be used independently or as steps in workflows.
- * https://api.slack.com/future/functions/custom
+ * https://api.slack.com/automation/functions/custom
  */
 export const SampleFunctionDefinition = DefineFunction({
   callback_id: "sample_function",
@@ -35,15 +36,19 @@ export const SampleFunctionDefinition = DefineFunction({
   },
 });
 
-// This function takes the input from the open form step, adds formatting, saves our
-// updated object into the Slack hosted datastore, and returns the updated message.
+/**
+ * SlackFunction takes in two arguments: the CustomFunction
+ * definition (see above), as well as a function that contains
+ * handler logic that's run when the function is executed.
+ * https://api.slack.com/automation/functions/custom
+ */
 export default SlackFunction(
   SampleFunctionDefinition,
   async ({ inputs, client }) => {
     const uuid = crypto.randomUUID();
 
     // inputs.user is set from the interactivity_context defined in sample_trigger.ts
-    // https://api.slack.com/future/forms#add-interactivity
+    // https://api.slack.com/automation/forms#add-interactivity
     const updatedMsg = `:wave: ` + `<@${inputs.user}>` +
       ` submitted the following message: \n\n>${inputs.message}`;
 
@@ -54,7 +59,7 @@ export default SlackFunction(
     };
 
     // Save the sample object to the datastore
-    // https://api.slack.com/future/datastores
+    // https://api.slack.com/automation/datastores
     await client.apps.datastore.put<typeof SampleObjectDatastore.definition>(
       {
         datastore: "SampleObjects",
