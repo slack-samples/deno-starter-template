@@ -3,7 +3,7 @@ import { DefineDatastore, Schema } from "deno-slack-sdk/mod.ts";
 /**
  * Datastores are a Slack-hosted location to store
  * and retrieve data for your app.
- * https://api.slack.com/future/datastores
+ * https://api.slack.com/automation/datastores
  */
 const SampleObjectDatastore = DefineDatastore({
   name: "SampleObjects",
