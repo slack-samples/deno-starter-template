@@ -70,6 +70,12 @@ you to create a trigger if one is found in the `triggers/` directory. For any
 subsequent triggers added to the application, each must be
 [manually added using the `trigger create` command](#manual-trigger-creation).
 
+When creating triggers, you must select the workspace and environment that you'd
+like to create the trigger in. Each workspace can have a local development
+version (denoted by `(local)`), as well as a deployed version. _Triggers created
+in a local environment will only be available to use when running the
+application locally._
+
 ### Link Triggers
 
 A [link trigger](https://api.slack.com/automation/triggers/link) is a type of
@@ -82,15 +88,9 @@ that Shortcut URLs will be different across each workspace, as well as between
 [locally run](#running-your-project-locally) and
 [deployed apps](#deploying-your-app).
 
-When creating triggers, you must select the workspace and environment that you'd
-like to create the trigger in. Each workspace can have a local development
-version (denoted by `(local)`), as well as a deployed version. _Triggers created
-in a local environment will only be available to use when running the
-application locally._
-
-After selecting a workspace and environment, the output provided will include
-the link trigger Shortcut URL. Copy and paste this URL into a channel as a
-message, or add it as a bookmark in a channel of the workspace you selected.
+With link triggers, after selecting a workspace and environment, the output
+provided will include a Shortcut URL. Copy and paste this URL into a channel as
+a message, or add it as a bookmark in a channel of the workspace you selected.
 Interacting with this link will run the associated workflow.
 
 **Note: triggers won't run the workflow unless the app is either running locally
