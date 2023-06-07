@@ -8,7 +8,7 @@ import SampleObjectDatastore from "./datastores/sample_datastore.ts";
  * https://api.slack.com/automation/manifest
  */
 export default Manifest({
-  name: "alissa-starter-template",
+  name: "deno-starter-template",
   description: "A template for building Slack apps with Deno",
   icon: "assets/default_new_app_icon.png",
   workflows: [SampleWorkflow],
