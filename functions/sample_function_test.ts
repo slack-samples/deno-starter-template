@@ -1,5 +1,9 @@
 import { SlackFunctionTester } from "deno-slack-sdk/mod.ts";
-import { assertEquals } from "https://deno.land/std@0.153.0/testing/asserts.ts";
+import {
+  assertEquals,
+  assertExists,
+  assertStringIncludes,
+} from "https://deno.land/std@0.153.0/testing/asserts.ts";
 import SampleFunction from "./sample_function.ts";
 import * as mf from "https://deno.land/x/mock_fetch@0.3.0/mod.ts";
 
@@ -8,9 +12,14 @@ const { createContext } = SlackFunctionTester("sample_function");
 // Replaces globalThis.fetch with the mocked copy
 mf.install();
 
-mf.mock("POST@/api/apps.datastore.put", () => {
+// Shared mocks can be defined at the top level of tests
+mf.mock("POST@/api/apps.datastore.put", async (args) => {
+  const body = await args.formData();
+  const datastore = body.get("datastore");
+  const item = body.get("item");
+
   return new Response(
-    `{"ok": true, "item": {"object_id": "d908f8bd-00c6-43f0-9fc3-4da3c2746e14"}}`,
+    `{"ok": true, "datastore": ${datastore}, "item": ${item}}`,
     {
       status: 200,
     },
@@ -19,9 +28,27 @@ mf.mock("POST@/api/apps.datastore.put", () => {
 
 Deno.test("Sample function test", async () => {
   const inputs = { message: "Hello, World!", user: "U01234567" };
-  const { outputs } = await SampleFunction(createContext({ inputs }));
-  await assertEquals(
+  const { outputs, error } = await SampleFunction(createContext({ inputs }));
+
+  assertEquals(error, undefined);
+  assertEquals(
     outputs?.updatedMsg,
     ":wave: <@U01234567> submitted the following message: \n\n>Hello, World!",
   );
+});
+
+Deno.test("Sample function datastore error handling", async () => {
+  // Mocks specific to a test can be overriden within a test
+  mf.mock("POST@/api/apps.datastore.put", () => {
+    return new Response(`{"ok": false, "error": "datastore_error"}`, {
+      status: 200,
+    });
+  });
+
+  const inputs = { message: "Hello, World!", user: "U01234567" };
+  const { outputs, error } = await SampleFunction(createContext({ inputs }));
+
+  assertExists(error);
+  assertStringIncludes(error, "datastore_error");
+  assertEquals(outputs, undefined);
 });
