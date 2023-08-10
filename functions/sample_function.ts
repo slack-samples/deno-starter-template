@@ -60,12 +60,18 @@ export default SlackFunction(
 
     // Save the sample object to the datastore
     // https://api.slack.com/automation/datastores
-    await client.apps.datastore.put<typeof SampleObjectDatastore.definition>(
-      {
-        datastore: "SampleObjects",
-        item: sampleObject,
-      },
-    );
+    const putResponse = await client.apps.datastore.put<
+      typeof SampleObjectDatastore.definition
+    >({
+      datastore: "SampleObjects",
+      item: sampleObject,
+    });
+
+    if (!putResponse.ok) {
+      return {
+        error: `Failed to put item into the datastore: ${putResponse.error}`,
+      };
+    }
 
     return { outputs: { updatedMsg } };
   },
