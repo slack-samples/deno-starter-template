@@ -19,7 +19,7 @@ mf.mock("POST@/api/apps.datastore.put", async (args) => {
   const item = body.get("item");
 
   return new Response(
-    `{"ok": true, "datastore": ${datastore}, "item": ${item}}`,
+    `{"ok": true, "datastore": "${datastore}", "item": ${item}}`,
     {
       status: 200,
     },
