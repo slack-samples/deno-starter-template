@@ -3,9 +3,9 @@ import {
   assertEquals,
   assertExists,
   assertStringIncludes,
-} from "https://deno.land/std@0.153.0/testing/asserts.ts";
+} from "std/testing/asserts.ts";
 import SampleFunction from "./sample_function.ts";
-import * as mf from "https://deno.land/x/mock_fetch@0.3.0/mod.ts";
+import * as mf from "mock-fetch/mod.ts";
 
 const { createContext } = SlackFunctionTester("sample_function");
 
