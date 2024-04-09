@@ -25,7 +25,7 @@ const SampleWorkflow = DefineWorkflow({
         type: Schema.slack.types.user_id,
       },
     },
-    required: ["user", "interactivity"],
+    required: ["interactivity", "channel", "user"],
   },
 });
 

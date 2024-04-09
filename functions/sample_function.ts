@@ -23,7 +23,7 @@ export const SampleFunctionDefinition = DefineFunction({
         description: "The user invoking the workflow",
       },
     },
-    required: ["message"],
+    required: ["message", "user"],
   },
   output_parameters: {
     properties: {
