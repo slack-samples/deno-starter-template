@@ -1,0 +1,13 @@
+{
+    "name": "Slack Platform",
+    "dockerFile": "Dockerfile",
+    "remoteUser": "slackdev",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "denoland.vscode-deno",
+                "ms-azuretools.vscode-docker"
+            ]
+        }
+    }
+}
