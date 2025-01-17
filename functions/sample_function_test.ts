@@ -3,7 +3,7 @@ import {
   assertEquals,
   assertExists,
   assertStringIncludes,
-} from "std/testing/asserts.ts";
+} from "std/assert/mod.ts";
 import SampleFunction from "./sample_function.ts";
 import * as mf from "mock-fetch/mod.ts";
 
