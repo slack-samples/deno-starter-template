@@ -1,5 +1,5 @@
 import { DefineFunction, Schema, SlackFunction } from "deno-slack-sdk/mod.ts";
-import SampleObjectDatastore from "../datastores/sample_datastore.ts";
+import type SampleObjectDatastore from "../datastores/sample_datastore.ts";
 
 /**
  * Functions are reusable building blocks of automation that accept
@@ -49,8 +49,8 @@ export default SlackFunction(
 
     // inputs.user is set from the interactivity_context defined in sample_trigger.ts
     // https://api.slack.com/automation/forms#add-interactivity
-    const updatedMsg = `:wave: ` + `<@${inputs.user}>` +
-      ` submitted the following message: \n\n>${inputs.message}`;
+    const updatedMsg =
+      `:wave: <@${inputs.user}> submitted the following message: \n\n>${inputs.message}`;
 
     const sampleObject = {
       original_msg: inputs.message,

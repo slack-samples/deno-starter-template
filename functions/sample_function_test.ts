@@ -1,32 +1,33 @@
 import { SlackFunctionTester } from "deno-slack-sdk/mod.ts";
-import {
-  assertEquals,
-  assertExists,
-  assertStringIncludes,
-} from "std/testing/asserts.ts";
+import { assertEquals, assertExists, assertStringIncludes } from "@std/assert";
+import { stub } from "@std/testing/mock";
 import SampleFunction from "./sample_function.ts";
-import * as mf from "mock-fetch/mod.ts";
 
 const { createContext } = SlackFunctionTester("sample_function");
 
-// Replaces globalThis.fetch with the mocked copy
-mf.install();
+Deno.test("Sample function test", async () => {
+  // Replaces globalThis.fetch with the mocked copy
+  using _stubFetch = stub(
+    globalThis,
+    "fetch",
+    async (url: string | URL | Request, options?: RequestInit) => {
+      const request = url instanceof Request ? url : new Request(url, options);
 
-// Shared mocks can be defined at the top level of tests
-mf.mock("POST@/api/apps.datastore.put", async (args) => {
-  const body = await args.formData();
-  const datastore = body.get("datastore");
-  const item = body.get("item");
+      assertEquals(request.method, "POST");
+      assertEquals(request.url, "https://slack.com/api/apps.datastore.put");
 
-  return new Response(
-    `{"ok": true, "datastore": "${datastore}", "item": ${item}}`,
-    {
-      status: 200,
+      const body = await request.formData();
+      const datastore = body.get("datastore");
+      const item = body.get("item");
+
+      return new Response(
+        `{"ok": true, "datastore": "${datastore}", "item": ${item}}`,
+        {
+          status: 200,
+        },
+      );
     },
   );
-});
-
-Deno.test("Sample function test", async () => {
   const inputs = { message: "Hello, World!", user: "U01234567" };
   const { outputs, error } = await SampleFunction(createContext({ inputs }));
 
@@ -38,12 +39,23 @@ Deno.test("Sample function test", async () => {
 });
 
 Deno.test("Sample function datastore error handling", async () => {
-  // Mocks specific to a test can be overriden within a test
-  mf.mock("POST@/api/apps.datastore.put", () => {
-    return new Response(`{"ok": false, "error": "datastore_error"}`, {
-      status: 200,
-    });
-  });
+  // Replaces globalThis.fetch with the mocked copy
+  using _stubFetch = stub(
+    globalThis,
+    "fetch",
+    (url: string | URL | Request, options?: RequestInit) => {
+      const request = url instanceof Request ? url : new Request(url, options);
+
+      assertEquals(request.method, "POST");
+      assertEquals(request.url, "https://slack.com/api/apps.datastore.put");
+
+      return Promise.resolve(
+        new Response(`{"ok": false, "error": "datastore_error"}`, {
+          status: 200,
+        }),
+      );
+    },
+  );
 
   const inputs = { message: "Hello, World!", user: "U01234567" };
   const { outputs, error } = await SampleFunction(createContext({ inputs }));

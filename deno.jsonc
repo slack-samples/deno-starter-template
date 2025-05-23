@@ -1,5 +1,5 @@
 {
-  "$schema": "https://deno.land/x/deno/cli/schemas/config-file.v1.json",
+  "$schema": "https://raw.githubusercontent.com/denoland/deno/main/cli/schemas/config-file.v1.json",
   "fmt": {
     "include": [
       "README.md",
@@ -13,7 +13,6 @@
       "workflows"
     ]
   },
-  "importMap": "import_map.json",
   "lint": {
     "include": [
       "datastores",
@@ -28,6 +27,12 @@
   },
   "lock": false,
   "tasks": {
-    "test": "deno fmt --check && deno lint && deno test --allow-read --allow-none"
+    "test": "deno fmt --check && deno lint && deno test --allow-read"
+  },
+  "imports": {
+    "@std/assert": "jsr:@std/assert@^1.0.13",
+    "@std/testing": "jsr:@std/testing@^1.0.12",
+    "deno-slack-sdk/": "https://deno.land/x/deno_slack_sdk@2.15.0/",
+    "deno-slack-api/": "https://deno.land/x/deno_slack_api@2.8.0/"
   }
 }
