@@ -21,4 +21,4 @@ RUN export PATH="$DENO_INSTALL/bin:$PATH"
 WORKDIR /workspaces
 
 # Install the Slack CLI
-RUN curl -fsSL https://downloads.slack-edge.com/slack-cli/install.sh | bash -s -- -d
+RUN curl -fsSL https://downloads.slack-edge.com/slack-cli/install.sh | bash
