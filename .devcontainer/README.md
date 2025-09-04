@@ -30,6 +30,6 @@ file:
 ```
 
 [codespaces]: https://github.com/features/codespaces
-[cli]: https://api.slack.com/automation/cli
+[cli]: https://docs.slack.dev/tools/slack-cli/
 [container]: https://containers.dev/
 [vscode]: https://code.visualstudio.com/docs/devcontainers/containers
