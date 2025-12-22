@@ -1,0 +1,11 @@
+# Salesforce Open Source project configuration
+# Learn more: https://github.com/salesforce/oss-template
+#ECCN:Open Source
+#GUSINFO:Open Source,Open Source Workflow
+
+# Code owners are the default owners for everything in
+# this repository. The owners listed below will be requested for
+# review when a pull request is opened.
+# To set code owner(s), replace the team below with either
+# their GitHub username(s) or a GitHub team.
+* @slack-samples/maintainers
