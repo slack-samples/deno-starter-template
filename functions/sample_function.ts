@@ -1,4 +1,4 @@
-import { DefineFunction, Schema, SlackFunction } from "deno-slack-sdk/mod.ts";
+import { DefineFunction, Schema, SlackFunction } from "@slack/sdk";
 import type SampleObjectDatastore from "../datastores/sample_datastore.ts";
 
 /**
