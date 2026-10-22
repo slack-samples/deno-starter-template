@@ -8,7 +8,6 @@ There are many ways you can contribute! :heart:
 
 - If you find a bug, please search for it in the [Issues](https://github.com/slack-samples/deno-starter-template/issues), and if it isn't already tracked, [create a new issue](https://github.com/slack-samples/deno-starter-template/issues/new). Fill out the "Bug Report" section of the issue template. Even if an Issue is closed, feel free to comment and add details, it will still be reviewed.
 - Issues that have already been identified as a bug (note: able to reproduce) will be labelled `bug`.
-- Issues that are related to the examples apps will be labelled `area:examples`.
 - If you'd like to submit a fix for a bug, [send a Pull Request](#creating-a-pull-request) and mention the Issue number.
 - Include tests that isolate the bug and verifies that it was fixed.
 
@@ -16,7 +15,6 @@ There are many ways you can contribute! :heart:
 
 - If you'd like to add new functionality to this project, describe the problem you want to solve in a [new Issue](https://github.com/slack-samples/deno-starter-template/issues/new).
 - Issues that have been identified as a feature request will be labelled `enhancement`.
-- Issues that are related to the examples apps will be labelled `area:examples`.
 - If you'd like to implement the new feature, please wait for feedback from the project maintainers before spending too much time writing the code. In some cases, `enhancement`s may not align well with the project objectives at the time.
 
 ### Tests :mag:, Documentation :books:, Miscellaneous :sparkles:
@@ -25,7 +23,7 @@ There are many ways you can contribute! :heart:
 - If its a trivial change, go ahead and [send a Pull Request](#creating-a-pull-request) with the changes you have in mind.
 - If not, [open an Issue](https://github.com/slack-samples/deno-starter-template/issues/new) to discuss the idea first.
 
-If you're new to our project and looking for some way to make your first contribution, look for Issues labelled `good first contribution`.
+If you're new to our project and looking for some way to make your first contribution, look for Issues labelled `good first issue`.
 
 ## Requirements
 
