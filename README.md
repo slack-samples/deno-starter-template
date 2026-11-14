@@ -56,8 +56,12 @@ methods and scopes, and build Block Kit without guessing.
 Run this in a Claude Code session:
 
 ```
-/plugin install slack@claude-plugins-official
+/plugin marketplace add slackapi/slack-skills-plugin
+/plugin install slack@slack
 ```
+
+**Enable auto-updates**: `/plugin` > Marketplaces > `slack` > Enable
+auto-update.
 
 #### Codex
 
