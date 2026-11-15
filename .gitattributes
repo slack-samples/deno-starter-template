@@ -1,0 +1,21 @@
+# Skills installed by `npx skills add`. Collapsed in GitHub diffs.
+# Listed by name so skills you add to your app still show in diffs.
+.agents/skills/block-kit/** linguist-generated
+.agents/skills/create-slack-app/** linguist-generated
+.agents/skills/deploy-slack-app/** linguist-generated
+.agents/skills/slack-api/** linguist-generated
+.agents/skills/slack-cli/** linguist-generated
+.agents/skills/slack-docs/** linguist-generated
+.agents/skills/slack-messaging/** linguist-generated
+.agents/skills/slack-search/** linguist-generated
+.agents/skills/test-slack-app/** linguist-generated
+.claude/skills/block-kit/** linguist-generated
+.claude/skills/create-slack-app/** linguist-generated
+.claude/skills/deploy-slack-app/** linguist-generated
+.claude/skills/slack-api/** linguist-generated
+.claude/skills/slack-cli/** linguist-generated
+.claude/skills/slack-docs/** linguist-generated
+.claude/skills/slack-messaging/** linguist-generated
+.claude/skills/slack-search/** linguist-generated
+.claude/skills/test-slack-app/** linguist-generated
+skills-lock.json linguist-generated
