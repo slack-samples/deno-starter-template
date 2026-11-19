@@ -6,63 +6,72 @@
       "sourceType": "github",
       "skillPath": "skills/block-kit/SKILL.md",
       "computedHash": "04748a453ee9ad97263e82effb17f8ce6788cccc19375b386fc8023ba6708493",
-      "installMode": "copy"
+      "installMode": "copy",
+      "commit": "a6db580e584b44d723dda4f6c6657aa0d04bf4c1"
     },
     "create-slack-app": {
       "source": "slackapi/slack-skills-plugin",
       "sourceType": "github",
       "skillPath": "skills/create-slack-app/SKILL.md",
-      "computedHash": "4a0c9055a219fe49614d990c74a0e4c1c3fbc8c4d005c6adbbdd91f106c6fe02",
-      "installMode": "copy"
+      "computedHash": "34723cf63b151456471eac7bc46d0859dd9e968b4193b15ba3cb42e562d69aca",
+      "installMode": "copy",
+      "commit": "a6db580e584b44d723dda4f6c6657aa0d04bf4c1"
     },
     "deploy-slack-app": {
       "source": "slackapi/slack-skills-plugin",
       "sourceType": "github",
       "skillPath": "skills/deploy-slack-app/SKILL.md",
-      "computedHash": "b45a2154bf461795d0cbab3d4c66fafc1293edfe0c0b54ad51a0e5f1f4e37e2a",
-      "installMode": "copy"
+      "computedHash": "f228a11e02336bd1c5a1e0d04d3bf64e21c9c64ec868424f81aa0e132ecab1ba",
+      "installMode": "copy",
+      "commit": "a6db580e584b44d723dda4f6c6657aa0d04bf4c1"
     },
     "slack-api": {
       "source": "slackapi/slack-skills-plugin",
       "sourceType": "github",
       "skillPath": "skills/slack-api/SKILL.md",
-      "computedHash": "e452e766b936e2a93ebe5fd2ec33ff3f1c68c6d6d4b64fd1eae1d4fb2ccc21f6",
-      "installMode": "copy"
+      "computedHash": "da79f0eee8d7af9c8247f1530328e794015a7b42e73fce2c82ee7fcd300b1a09",
+      "installMode": "copy",
+      "commit": "a6db580e584b44d723dda4f6c6657aa0d04bf4c1"
     },
     "slack-cli": {
       "source": "slackapi/slack-skills-plugin",
       "sourceType": "github",
       "skillPath": "skills/slack-cli/SKILL.md",
-      "computedHash": "4506040f94cbe20252b26cc8463c8eec4b89899ae6e4e46a4137b7e6b91d0b20",
-      "installMode": "copy"
+      "computedHash": "bfa0d297a23cf0206366e241c69a0fd4240efa8bb34a1ff129b94fadee0d1a24",
+      "installMode": "copy",
+      "commit": "a6db580e584b44d723dda4f6c6657aa0d04bf4c1"
     },
     "slack-docs": {
       "source": "slackapi/slack-skills-plugin",
       "sourceType": "github",
       "skillPath": "skills/slack-docs/SKILL.md",
-      "computedHash": "07013bbbb0ffa8bf0f62ca3a8fb8c0762f970c2058c3a00544068cebfc4fee2f",
-      "installMode": "copy"
+      "computedHash": "4c506e7b2fd40b268c8e2fcdf02bc072f33e4b32421cab7a1842b030d9ebacb3",
+      "installMode": "copy",
+      "commit": "a6db580e584b44d723dda4f6c6657aa0d04bf4c1"
     },
     "slack-messaging": {
       "source": "slackapi/slack-skills-plugin",
       "sourceType": "github",
       "skillPath": "skills/slack-messaging/SKILL.md",
       "computedHash": "4bb55059cf58a4614d896a0e8ad3421d8d5d0ceb76bc1fec6153914cae41934c",
-      "installMode": "copy"
+      "installMode": "copy",
+      "commit": "a6db580e584b44d723dda4f6c6657aa0d04bf4c1"
     },
     "slack-search": {
       "source": "slackapi/slack-skills-plugin",
       "sourceType": "github",
       "skillPath": "skills/slack-search/SKILL.md",
       "computedHash": "e3fe85c29469e157db02e0898b14c1532f9e35cbe239a814388c7cd2c1a24746",
-      "installMode": "copy"
+      "installMode": "copy",
+      "commit": "a6db580e584b44d723dda4f6c6657aa0d04bf4c1"
     },
     "test-slack-app": {
       "source": "slackapi/slack-skills-plugin",
       "sourceType": "github",
       "skillPath": "skills/test-slack-app/SKILL.md",
       "computedHash": "818e70481f7671d2cbc3e103631d626e4b29bc7520ffbfcfeffc6f920467850d",
-      "installMode": "copy"
+      "installMode": "copy",
+      "commit": "a6db580e584b44d723dda4f6c6657aa0d04bf4c1"
     }
   }
 }
