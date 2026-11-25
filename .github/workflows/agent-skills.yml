@@ -22,7 +22,12 @@ jobs:
       - name: Update the skills in each skills-lock.json
         run: |
           while IFS= read -r lock; do
-            (cd "$(dirname "$lock")" && npx --yes skills@1 add slackapi/slack-skills-plugin --skill '*' --agent universal --agent claude-code --copy --yes < /dev/null && diff -rq .agents/skills .claude/skills)
+            (
+              cd "$(dirname "$lock")"
+              npx --yes skills@1 add slackapi/slack-skills-plugin --skill '*' --agent universal --agent claude-code --copy --yes < /dev/null
+              jq -r '.skills | to_entries[] | select(.value.source == "slackapi/slack-skills-plugin") | .key' skills-lock.json |
+                while IFS= read -r skill; do diff -rq ".agents/skills/$skill" ".claude/skills/$skill" || exit 1; done
+            )
           done < <(find . -name skills-lock.json -not -path "*/node_modules/*")
       - name: Open a pull request with the updates
         env:
