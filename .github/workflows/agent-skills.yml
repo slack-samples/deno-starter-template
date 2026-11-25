@@ -25,8 +25,9 @@ jobs:
             (
               cd "$(dirname "$lock")"
               npx --yes skills@1 add slackapi/slack-skills-plugin --skill '*' --agent universal --agent claude-code --copy --yes < /dev/null
-              jq -r '.skills | to_entries[] | select(.value.source == "slackapi/slack-skills-plugin") | .key' skills-lock.json |
-                while IFS= read -r skill; do diff -rq ".agents/skills/$skill" ".claude/skills/$skill" || exit 1; done
+              skills="$(jq -r '.skills | to_entries[] | select(.value.source == "slackapi/slack-skills-plugin") | .key' skills-lock.json)"
+              [ -n "$skills" ]
+              for skill in $skills; do diff -rq ".agents/skills/$skill" ".claude/skills/$skill"; done
             )
           done < <(find . -name skills-lock.json -not -path "*/node_modules/*")
       - name: Open a pull request with the updates
