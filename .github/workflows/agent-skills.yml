@@ -22,7 +22,7 @@ jobs:
       - name: Update the skills in each skills-lock.json
         run: |
           while IFS= read -r lock; do
-            (cd "$(dirname "$lock")" && npx --yes skills@1 update --project --yes)
+            (cd "$(dirname "$lock")" && npx --yes skills@1 add slackapi/slack-skills-plugin --skill '*' --agent universal --agent claude-code --copy --yes < /dev/null && diff -rq .agents/skills .claude/skills)
           done < <(find . -name skills-lock.json -not -path "*/node_modules/*")
       - name: Open a pull request with the updates
         env:
@@ -30,6 +30,12 @@ jobs:
         run: |
           git add -- '*skills-lock.json' '*.agents/skills/*' '*.claude/skills/*'
           if git diff --cached --quiet; then exit 0; fi
+          if git diff --cached --quiet -- . ':!*skills-lock.json' &&
+            git diff --cached --name-only -- '*skills-lock.json' | while IFS= read -r lock; do
+              [ "$(git show "HEAD:$lock" | jq -S 'del(.skills[].commit)')" = "$(jq -S 'del(.skills[].commit)' "$lock")" ] || exit 1
+            done; then
+            exit 0
+          fi
           gh auth setup-git
           state="$(gh pr view agent-skills --json state --jq .state 2>/dev/null || true)"
           if [ "$state" = "OPEN" ] && git fetch --quiet --depth 2 origin agent-skills && [ "$(git rev-parse FETCH_HEAD^)" = "$(git rev-parse HEAD)" ] && git diff --cached --quiet FETCH_HEAD; then exit 0; fi
