@@ -51,7 +51,8 @@ Install the
 your coding agent can create, run, and deploy Slack apps, look up Web API
 methods and scopes, and build Block Kit without guessing.
 
-`.github/workflows/agent-skills.yml` checks daily for updates to the agent
+`.github/workflows/agent-skills.yml` checks daily for a new
+[release](https://github.com/slackapi/slack-skills-plugin/releases) of the agent
 skills in `skills-lock.json` and opens a pull request when they change. To let
 it open pull requests in your own repository, turn on **Allow GitHub Actions to
 create and approve pull requests** in **Settings > Actions > General**.
