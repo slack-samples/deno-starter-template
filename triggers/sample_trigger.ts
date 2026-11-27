@@ -1,5 +1,5 @@
-import type { Trigger } from "deno-slack-sdk/types.ts";
-import { TriggerContextData, TriggerTypes } from "deno-slack-api/mod.ts";
+import type { Trigger } from "@slack/sdk/types.ts";
+import { TriggerContextData, TriggerTypes } from "@slack/api";
 import SampleWorkflow from "../workflows/sample_workflow.ts";
 /**
  * Triggers determine when workflows are executed. A trigger

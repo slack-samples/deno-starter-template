@@ -1,4 +1,4 @@
-import { Manifest } from "deno-slack-sdk/mod.ts";
+import { Manifest } from "@slack/sdk";
 import SampleWorkflow from "./workflows/sample_workflow.ts";
 import SampleObjectDatastore from "./datastores/sample_datastore.ts";
 
