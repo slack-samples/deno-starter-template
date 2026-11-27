@@ -19,12 +19,17 @@ jobs:
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 24.x
-      - name: Update the skills in each skills-lock.json
+      - name: Update the skills in each skills-lock.json to the latest release
+        id: skills
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
+          tag="$(gh release view --repo slackapi/slack-skills-plugin --json tagName --jq .tagName)"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
           while IFS= read -r lock; do
             (
               cd "$(dirname "$lock")"
-              npx --yes skills@1 add slackapi/slack-skills-plugin --skill '*' --agent universal --agent claude-code --copy --yes < /dev/null
+              npx --yes skills@1 add "slackapi/slack-skills-plugin#$tag" --skill '*' --agent universal --agent claude-code --copy --yes < /dev/null
               skills="$(jq -r '.skills | to_entries[] | select(.value.source == "slackapi/slack-skills-plugin") | .key' skills-lock.json)"
               [ -n "$skills" ]
               for skill in $skills; do diff -rq ".agents/skills/$skill" ".claude/skills/$skill"; done
@@ -33,12 +38,13 @@ jobs:
       - name: Open a pull request with the updates
         env:
           GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.skills.outputs.tag }}
         run: |
           git add -- '*skills-lock.json' '*.agents/skills/*' '*.claude/skills/*'
           if git diff --cached --quiet; then exit 0; fi
           if git diff --cached --quiet -- . ':!*skills-lock.json' &&
             git diff --cached --name-only -- '*skills-lock.json' | while IFS= read -r lock; do
-              [ "$(git show "HEAD:$lock" | jq -S 'del(.skills[].commit)')" = "$(jq -S 'del(.skills[].commit)' "$lock")" ] || exit 1
+              [ "$(git show "HEAD:$lock" | jq -S 'del(.skills[].commit, .skills[].ref)')" = "$(jq -S 'del(.skills[].commit, .skills[].ref)' "$lock")" ] || exit 1
             done; then
             exit 0
           fi
@@ -48,8 +54,12 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git switch -C agent-skills
-          git commit -m "chore: update agent skills"
+          git commit -m "chore: update agent skills to $TAG"
           git push --force origin agent-skills
+          title="chore: update agent skills to $TAG"
+          body="Updates the agent skills in \`skills-lock.json\` to the [$TAG](https://github.com/slackapi/slack-skills-plugin/releases/tag/$TAG) release."
           if [ "$(gh pr view agent-skills --json state --jq .state 2>/dev/null)" != "OPEN" ]; then
-            gh pr create --head agent-skills --title "chore: update agent skills" --body "Updates the agent skills in \`skills-lock.json\` to the latest versions."
+            gh pr create --head agent-skills --title "$title" --body "$body"
+          else
+            gh pr edit agent-skills --title "$title" --body "$body"
           fi
